@@ -1,8 +1,14 @@
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
-
+var dust;
 var engine,world;
+let img;
+function preload(){
+    img = loadImage("dustbingreen.png");
+    img.scale=0.5;
+    imageMode(CENTER);
+}
 
 function setup() {
   
@@ -14,8 +20,9 @@ function setup() {
    
    paper = new Paper(200,200,50,50);
    bin1 = new Bin(800,450,10,100);
-   bin2 = new Bin(880,450,10,100); 
+   
 }
+
 
 function draw() {
     background("white");
@@ -23,15 +30,15 @@ function draw() {
 
     ground.display();
     bin1.display();
-    bin2.display();   
+       
     paper.display();
-    
+    image(img,650,450);
 }
 
 
 function keyReleased() {
-    if(keyWentDown(space)){
-        paper.velocityX=-2;
-        paper.velocityY=4;
+    if(keyCode===32){
+        paper.body.position.x=-2;
+        paper.body.position.y=4;
     }
 }
